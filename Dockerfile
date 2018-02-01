@@ -9,7 +9,7 @@ ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
 RUN apk add --no-cache pcre bash openssl s6 lighttpd  && \
     apk add --no-cache --virtual  TMP autoconf automake build-base \
             wget curl tar gettext autoconf libtool \
-            asciidoc xmlto libev-dev automake  \
+            asciidoc xmlto c-ares-dev libev-dev automake  \
             libsodium-dev libtool libsodium linux-headers \
             openssl-dev pcre-dev git  && \
     apk add --no-cache --virtual Dependent pcre-dev mbedtls-dev libsodium-dev udns-dev libev-dev && \
