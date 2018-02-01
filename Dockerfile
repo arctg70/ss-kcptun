@@ -42,7 +42,7 @@ RUN apk add --no-cache pcre bash openssl s6 lighttpd  && \
 ADD lighttpd.conf /etc/lighttpd/lighttpd.conf
 RUN adduser www-data -G www-data -H -s /bin/false -D
 
-EXPOSE 80
+# EXPOSE 80
 COPY run.sh /run.sh
 COPY s6.d /etc/s6.d
 RUN chmod +x /run.sh /etc/s6.d/*/* /etc/s6.d/.s6-svscan/*
