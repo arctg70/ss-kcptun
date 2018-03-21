@@ -75,3 +75,4 @@ echo SS_METHOD=${SS_METHOD} >>  /var/www/index.html
 echo "root:${ROOT_PASSWORD}" | chpasswd > /dev/null 2>&1
 /usr/sbin/sshd -o PermitRootLogin=yes -o UseDNS=no
 exec /bin/s6-svscan /etc/s6.d
+
