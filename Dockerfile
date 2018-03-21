@@ -1,5 +1,5 @@
 FROM alpine:latest
-ENV KCPTUN_VER 20170525 
+ENV KCPTUN_VER 20180316 
 ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
     SS_DIR=shadowsocks-libev \
     CONF_DIR=/usr/local/conf \
