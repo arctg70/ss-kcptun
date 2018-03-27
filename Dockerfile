@@ -6,13 +6,14 @@ ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
     KCPTUN_URL="https://github.com/xtaci/kcptun/releases/download/v${KCPTUN_VER}/kcptun-linux-amd64-${KCPTUN_VER}.tar.gz" \
     KCPTUN_DIR=/usr/local/kcp-server
 
-RUN apk add --no-cache pcre bash openssl s6 lighttpd  && \
+RUN apk upgrade --update \
+	apk add --no-cache pcre bash openssl libsodium s6 lighttpd  && \
     apk add --no-cache --virtual  TMP autoconf automake build-base \
-            wget curl tar gettext autoconf libtool \
-            asciidoc xmlto c-ares-dev libev-dev automake  \
-            libsodium-dev  libsodium linux-headers \
-            openssl-dev pcre-dev git  && \
-    apk add --no-cache --virtual Dependent pcre-dev mbedtls-dev  udns-dev libev-dev && \
+            wget curl tar gettext  libtool \
+            asciidoc xmlto c-ares-dev libev-dev \
+            libsodium-dev   linux-headers \
+			pcre-dev mbedtls-dev  udns-dev  \
+            openssl-dev  git  && \
     git clone --recursive $SS_URL && \
     cd $SS_DIR && \
     git submodule update --init --recursive && \
