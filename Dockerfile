@@ -1,5 +1,6 @@
 FROM alpine:latest
 ENV KCPTUN_VER 20180316 
+ENV LIBEV_VER 3.1.3
 ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
 ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
     SS_DIR=shadowsocks-libev \
@@ -15,9 +16,11 @@ RUN apk upgrade --update && \
             libsodium-dev   linux-headers \
 			pcre-dev mbedtls-dev  udns-dev  \
             openssl-dev  git  && \
-    git clone --recursive $SS_URL && \
+    git clone -b v${LIBEV_VER} $SS_URL && \
     (cd $SS_DIR && \
-    ./autogen.sh && ./configure --prefix=/usr --disable-documentation && \
+	git submodule update --init --recursive && \
+    ./autogen.sh && 
+	./configure --prefix=/usr --disable-documentation && \
 	make && make install ) && \
 	git clone ${OBFS_DOWNLOAD_URL} && \
 	(cd simple-obfs && \
