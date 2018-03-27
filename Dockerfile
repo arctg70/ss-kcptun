@@ -16,8 +16,11 @@ RUN apk upgrade --update && \
             openssl-dev  git  && \
     git clone --recursive $SS_URL && \
     cd $SS_DIR && \
+    ./autogen.sh && ./configure --prefix=/usr --disable-documentation && \
+	make && make install && \
     git submodule update --init --recursive && \
-    ./autogen.sh && ./configure && make && make install && \
+    ./autogen.sh && ./configure --disable-documentation && \
+	make && make install && \
     cd .. && \
     rm -rf $SS_DIR && \
 # Install kcptun
