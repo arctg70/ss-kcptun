@@ -1,4 +1,4 @@
-# 版本
+﻿# 版本
 Forked from [cndocker/kcptun-socks5-ss-server](https://github.com/cndocker/kcptun-socks5-ss-server-docker)
 
 | 软件 | 版本 |
