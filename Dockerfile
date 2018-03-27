@@ -1,5 +1,6 @@
 FROM alpine:latest
 ENV KCPTUN_VER 20180316 
+ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
 ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
     SS_DIR=shadowsocks-libev \
     CONF_DIR=/usr/local/conf \
@@ -15,14 +16,20 @@ RUN apk upgrade --update && \
 			pcre-dev mbedtls-dev  udns-dev  \
             openssl-dev  git  && \
     git clone --recursive $SS_URL && \
-    cd $SS_DIR && \
+    (cd $SS_DIR && \
     ./autogen.sh && ./configure --prefix=/usr --disable-documentation && \
-	make && make install && \
+	make && make install ) && \
+	git clone ${OBFS_DOWNLOAD_URL} && \
+	(cd simple-obfs && \
     git submodule update --init --recursive && \
     ./autogen.sh && ./configure --disable-documentation && \
-	make && make install && \
-    cd .. && \
+    && make && make install) && \
+#    git submodule update --init --recursive && \
+#    ./autogen.sh && ./configure --disable-documentation && \
+#	make && make install && \
+#    cd .. && \
     rm -rf $SS_DIR && \
+	rm -rf simple-obfs && \
 # Install kcptun
     mkdir -p ${CONF_DIR} && \
     mkdir -p ${KCPTUN_DIR} && cd ${KCPTUN_DIR} && \
