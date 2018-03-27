@@ -23,7 +23,7 @@ RUN apk upgrade --update && \
 	(cd simple-obfs && \
     git submodule update --init --recursive && \
     ./autogen.sh && ./configure --disable-documentation && \
-    && make && make install) && \
+    make && make install) && \
 #    git submodule update --init --recursive && \
 #    ./autogen.sh && ./configure --disable-documentation && \
 #	make && make install && \
