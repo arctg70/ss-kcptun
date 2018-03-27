@@ -16,7 +16,7 @@ RUN apk upgrade --update && \
             libsodium-dev   linux-headers \
 			pcre-dev mbedtls-dev  udns-dev  \
             openssl-dev  git  && \
-    git clone  $SS_URL && \
+    git clone --recursive $SS_URL && \
     (cd $SS_DIR && \
 #	git submodule update --init --recursive && \
     ./autogen.sh && 
