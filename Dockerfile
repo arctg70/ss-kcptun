@@ -18,7 +18,7 @@ RUN apk upgrade --update && \
             openssl-dev  git  && \
     git clone  $SS_URL && \
     (cd $SS_DIR && \
-	git submodule update --init --recursive && \
+#	git submodule update --init --recursive && \
     ./autogen.sh && 
 	./configure --prefix=/usr --disable-documentation && \
 	make && make install ) && \
