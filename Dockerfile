@@ -10,14 +10,13 @@ RUN apk add --no-cache pcre bash openssl s6 lighttpd  && \
     apk add --no-cache --virtual  TMP autoconf automake build-base \
             wget curl tar gettext autoconf libtool \
             asciidoc xmlto c-ares-dev libev-dev automake  \
-            libsodium-dev libtool libsodium linux-headers \
+            libsodium-dev  libsodium linux-headers \
             openssl-dev pcre-dev git  && \
-    apk add --no-cache --virtual Dependent pcre-dev mbedtls-dev libsodium-dev udns-dev libev-dev && \
+    apk add --no-cache --virtual Dependent pcre-dev mbedtls-dev  udns-dev libev-dev && \
     git clone --recursive $SS_URL && \
     cd $SS_DIR && \
     git submodule update --init --recursive && \
-    ./autogen.sh && ./configure && make && \
-    make install && \
+    ./autogen.sh && ./configure && make && make install && \
     cd .. && \
     rm -rf $SS_DIR && \
 # Install kcptun
