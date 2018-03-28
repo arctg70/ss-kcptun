@@ -19,7 +19,7 @@ RUN apk upgrade --update && \
     git clone --recursive $SS_URL && \
     (cd $SS_DIR && \
     ./autogen.sh && 
-	./configure --prefix=/usr --disable-documentation && \
+	./configure  && \
 	make && make install ) && \
 #	git clone ${OBFS_DOWNLOAD_URL} && \
 #	(cd simple-obfs && \
