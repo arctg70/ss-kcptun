@@ -8,8 +8,7 @@ ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
     KCPTUN_URL="https://github.com/xtaci/kcptun/releases/download/v${KCPTUN_VER}/kcptun-linux-amd64-${KCPTUN_VER}.tar.gz" \
     KCPTUN_DIR=/usr/local/kcp-server
 
-RUN apk upgrade --update && \
-	apk add --no-cache pcre bash openssl libsodium s6 lighttpd  && \
+RUN apk add --no-cache pcre bash openssl libsodium s6 lighttpd  && \
     apk add --no-cache --virtual  TMP autoconf automake build-base \
             wget curl tar gettext  libtool \
             asciidoc xmlto c-ares-dev libev-dev \
