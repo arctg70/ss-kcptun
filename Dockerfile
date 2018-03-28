@@ -17,7 +17,7 @@ RUN apk add --no-cache pcre bash openssl libsodium s6 lighttpd  && \
             openssl-dev  git  && \
     git clone --recursive $SS_URL && \
     (cd $SS_DIR && \
-    ./autogen.sh && 
+    ./autogen.sh && \
 	./configure  && \
 	make && make install ) && \
 #	git clone ${OBFS_DOWNLOAD_URL} && \
