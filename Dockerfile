@@ -15,20 +15,24 @@ RUN apk add --no-cache pcre bash openssl libsodium s6 lighttpd  && \
             libsodium-dev   linux-headers \
 			pcre-dev mbedtls-dev  udns-dev  \
             openssl-dev  git  && \
+
+# Install Shadowsock-libev
     git clone --recursive -b v${LIBEV_VER} $SS_URL && \
     (cd $SS_DIR && \
 	git submodule update --init --recursive && \
     ./autogen.sh && \
 	./configure  --prefix=/usr --disable-documentation && \
 	make && make install ) && \
+    rm -rf $SS_DIR && \
+
+# Install OBFS
 	git clone ${OBFS_DOWNLOAD_URL} && \
 	(cd simple-obfs && \
     git submodule update --init --recursive && \
     ./autogen.sh && ./configure --disable-documentation && \
     make && make install) && \
-#    cd .. && \
-    rm -rf $SS_DIR && \
 	rm -rf simple-obfs && \
+
 # Install kcptun
     mkdir -p ${CONF_DIR} && \
     mkdir -p ${KCPTUN_DIR} && cd ${KCPTUN_DIR} && \
@@ -38,6 +42,7 @@ RUN apk add --no-cache pcre bash openssl libsodium s6 lighttpd  && \
     chown root:root ${KCPTUN_DIR}/* && \
     chmod 755 ${KCPTUN_DIR}/* && \
     ln -s ${KCPTUN_DIR}/* /bin/ && \
+
 # Install sshd
     apk add --no-cache openssh && \
     ssh-keygen -A && \
