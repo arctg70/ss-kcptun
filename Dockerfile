@@ -1,6 +1,6 @@
 FROM alpine:3.5
 ENV KCPTUN_VER 20180316 
-ENV LIBEV_VER 3.1.3
+ENV LIBEV_VER 3.0.8
 ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
 ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
     SS_DIR=shadowsocks-libev \
