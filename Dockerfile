@@ -68,8 +68,7 @@ RUN apk upgrade --update && \
 # Install nload
     apk add --no-cache nload && \
 # Clean up
-    apk --no-cache del --virtual TMP && \
-    apk --no-cache del build-base autoconf && \
+    apk del TMP && \
     rm -rf /var/cache/apk/* ~/.cache
 
 ADD lighttpd.conf /etc/lighttpd/lighttpd.conf

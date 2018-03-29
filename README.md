@@ -1,4 +1,4 @@
-﻿# 版本
+� 版本
 Forked from [cndocker/kcptun-socks5-ss-server](https://github.com/cndocker/kcptun-socks5-ss-server-docker)
 
 | 软件 | 版本 |
@@ -7,7 +7,7 @@ Forked from [cndocker/kcptun-socks5-ss-server](https://github.com/cndocker/kcptu
 | kcptun | 20180316 |
 oo
 # 使用
-## 启动命令
+## 启动命令 ����
 ```bash
 docker run -d --name=ss-kcptun \
 --restart=always \
@@ -22,7 +22,6 @@ docker run -d --name=ss-kcptun \
 -e SS_METHOD=aes-256-gcm \
 -e SS_DNS_ADDR=8.8.8.8 \
 -e SS_UDP=faulse \
--e SS_ONETIME_AUTH=faulse \
 -e SS_FAST_OPEN=true \
 -e KCPTUN_SS_LISTEN=34567 \
 -e KCPTUN_KEY=password \
@@ -45,7 +44,6 @@ arctg70/ss-kcptun
 | SS_TIMEOUT         | 600                  | 连接超时时间                          |
 | SS_DNS_ADDR        | 8.8.8.8              | SS服务器的DNS地址                     |
 | SS_UDP             | faulse                 | 关闭SS服务�UDP relay                |
-| SS_ONETIME_AUTH    | faulse                 | 关闭SS服务�onetime authentication.  |
 | SS_FAST_OPEN       | true                 | 开启SS服务� TCP fast open.          |
 | KCPTUN_SS_LISTEN   | 34567                | kcptun提供服务的端口，UDP协议           |
 | KCPTUN_KEY         | password             | 服务密码                              |
