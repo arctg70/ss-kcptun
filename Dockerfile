@@ -10,7 +10,8 @@ ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
     KCPTUN_DIR=/usr/local/kcp-server
 
 RUN apk upgrade --update && \
-	apk add --no-cache pcre c-ares bash openssl libsodium s6 lighttpd  && \
+	apk add --no-cache pcre c-ares mbedtls \
+		bash openssl libsodium s6 lighttpd  && \
     apk add --no-cache --virtual  TMP \
 		autoconf automake asciidoc build-base \
 		curl c-ares-dev gettext \
