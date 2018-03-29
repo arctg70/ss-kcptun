@@ -9,7 +9,7 @@ export SS_METHOD=${SS_METHOD:-aes-256-gcm}                           #"method":"
 export SS_TIMEOUT=${SS_TIMEOUT:-600}                                 #"timeout":600,
 export SS_DNS_ADDR=${SS_DNS_ADDR:-8.8.8.8}                           #-d "8.8.8.8",
 export SS_UDP=${SS_UDP:-faulse}                                        #-u support,
-export SS_ONETIME_AUTH=${SS_ONETIME_AUTH:-faulse}                      #-A support,
+#export SS_ONETIME_AUTH=${SS_ONETIME_AUTH:-faulse}                      #-A support,
 export SS_FAST_OPEN=${SS_FAST_OPEN:-true}                            #--fast-open support,
 # ======= KCPTUN CONFIG ======
 export KCPTUN_SS_LISTEN=${KCPTUN_SS_LISTEN:-34567}                   #"listen": ":34567"
@@ -38,11 +38,11 @@ if [[ "${SS_UDP}" =~ ^[Tt][Rr][Uu][Ee]|[Yy][Ee][Ss]|1|[Ee][Nn][Aa][Bb][Ll][Ee]$ 
 else
     export SS_UDP_FLAG=""
 fi
-if [[ "${SS_ONETIME_AUTH}" =~ ^[Tt][Rr][Uu][Ee]|[Yy][Ee][Ss]|1|[Ee][Nn][Aa][Bb][Ll][Ee]$ ]]; then
-    export SS_ONETIME_AUTH_FLAG="-A "
-else
-    export SS_ONETIME_AUTH_FLAG=""
-fi
+#if [[ "${SS_ONETIME_AUTH}" =~ ^[Tt][Rr][Uu][Ee]|[Yy][Ee][Ss]|1|[Ee][Nn][Aa][Bb][Ll][Ee]$ ]]; then
+#    export SS_ONETIME_AUTH_FLAG="-A "
+#else
+#    export SS_ONETIME_AUTH_FLAG=""
+#fi
 if [[ "${SS_FAST_OPEN}" =~ ^[Tt][Rr][Uu][Ee]|[Yy][Ee][Ss]|1|[Ee][Nn][Aa][Bb][Ll][Ee]$ ]]; then
     export SS_FAST_OPEN_FLAG="--fast-open"
 else
