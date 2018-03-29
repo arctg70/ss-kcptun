@@ -1,15 +1,19 @@
-FROM alpine:latest
+FROM alpine:3.5
 ENV KCPTUN_VER 20180316 
+<<<<<<< HEAD
 ENV LIBEV_VER 3.1.3
 #ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
+=======
+#ENV LIBEV_VER 3.1.3
+ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
+>>>>>>> 8c429aef3fb23e1bbcbcd78a51a07e5455279e04
 ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
     SS_DIR=shadowsocks-libev \
     CONF_DIR=/usr/local/conf \
     KCPTUN_URL="https://github.com/xtaci/kcptun/releases/download/v${KCPTUN_VER}/kcptun-linux-amd64-${KCPTUN_VER}.tar.gz" \
     KCPTUN_DIR=/usr/local/kcp-server
 
-RUN apk upgrade --update && \
-	apk add --no-cache pcre bash openssl libsodium s6 lighttpd  && \
+RUN apk add --no-cache pcre bash openssl libsodium s6 lighttpd  && \
     apk add --no-cache --virtual  TMP autoconf automake build-base \
             wget curl tar gettext  libtool \
             asciidoc xmlto c-ares-dev libev-dev \
@@ -18,20 +22,18 @@ RUN apk upgrade --update && \
             openssl-dev  git  && \
     git clone --recursive -b v${LIBEV_VER} $SS_URL && \
     (cd $SS_DIR && \
-    ./autogen.sh && 
-	./configure  && \
+	git submodule update --init --recursive && \
+    ./autogen.sh && \
+	./configure  --prefix=/usr --disable-documentation && \
 	make && make install ) && \
-#	git clone ${OBFS_DOWNLOAD_URL} && \
-#	(cd simple-obfs && \
-#    git submodule update --init --recursive && \
-#    ./autogen.sh && ./configure --disable-documentation && \
-#    make && make install) && \
-#    git submodule update --init --recursive && \
-#    ./autogen.sh && ./configure --disable-documentation && \
-#	make && make install && \
+	git clone ${OBFS_DOWNLOAD_URL} && \
+	(cd simple-obfs && \
+    git submodule update --init --recursive && \
+    ./autogen.sh && ./configure --disable-documentation && \
+    make && make install) && \
 #    cd .. && \
     rm -rf $SS_DIR && \
-#	rm -rf simple-obfs && \
+	rm -rf simple-obfs && \
 # Install kcptun
     mkdir -p ${CONF_DIR} && \
     mkdir -p ${KCPTUN_DIR} && cd ${KCPTUN_DIR} && \
