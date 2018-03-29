@@ -1,6 +1,7 @@
-FROM alpine:3.5
+FROM alpine:3.7
 ENV KCPTUN_VER 20180316 
-ENV LIBEV_VER 3.0.8
+ENV LIBEV_VER 3.1.3
+ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${LIBEV_VER}/shadowsocks-libev-${LIBEV_VER}.tar.gz
 ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
 ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
     SS_DIR=shadowsocks-libev \
@@ -9,21 +10,37 @@ ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev.git \
     KCPTUN_DIR=/usr/local/kcp-server
 
 RUN apk add --no-cache pcre bash openssl libsodium s6 lighttpd  && \
-    apk add --no-cache --virtual  TMP autoconf automake build-base \
-            wget curl tar gettext  libtool \
-            asciidoc xmlto c-ares-dev libev-dev \
-            libsodium-dev   linux-headers \
-			pcre-dev mbedtls-dev  udns-dev  \
-            openssl-dev  git  && \
+    apk add --no-cache --virtual  TMP \
+		autoconf automake asciidoc build-base \
+		curl c-ares-dev gettext \
+		libtool libsodium-dev libev-dev linux-headers \
+		mbedtls-dev \
+		openssl-dev \
+		pcre-dev \
+		udns-dev \
+		wget \
+		xmlto \
+		tar \
+		git && \
 
 # Install Shadowsock-libev
-    git clone --recursive -b v${LIBEV_VER} $SS_URL && \
-    (cd $SS_DIR && \
-	git submodule update --init --recursive && \
-    ./autogen.sh && \
-	./configure  --prefix=/usr --disable-documentation && \
-	make && make install ) && \
-    rm -rf $SS_DIR && \
+
+# way 1
+    curl -sSLO ${SS_DOWNLOAD_URL} && \
+    tar -zxf shadowsocks-libev-${LIBEV_VER}.tar.gz && \
+    (cd shadowsocks-libev-${LIBEV_VER} && \
+    ./configure --prefix=/usr --disable-documentation && \
+    make install) && \
+	rm -rf shadowsocks-libev-${LIBEV_VER} && \
+
+# way 2
+#    git clone --recursive -b v${LIBEV_VER} $SS_URL && \
+#    (cd $SS_DIR && \
+#	git submodule update --init --recursive && \
+#    ./autogen.sh && \
+#	./configure  --prefix=/usr --disable-documentation && \
+#	make && make install ) && \
+#    rm -rf $SS_DIR && \
 
 # Install OBFS
 	git clone ${OBFS_DOWNLOAD_URL} && \
