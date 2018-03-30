@@ -1,13 +1,14 @@
-� 版本
+﻿� 版本
 Forked from [cndocker/kcptun-socks5-ss-server](https://github.com/cndocker/kcptun-socks5-ss-server-docker)
 
 | 软件 | 版本 |
 | :--- | :--- |
 | shadowsocks-libev |3.1.3 |
 | kcptun | 20180316 |
-oo
+
+
 # 使用
-## 启动命令 ����
+## 启动命令 
 ```bash
 docker run -d --name=ss-kcptun \
 --restart=always \
