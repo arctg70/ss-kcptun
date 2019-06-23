@@ -3,7 +3,7 @@ Forked from [cndocker/kcptun-socks5-ss-server](https://github.com/cndocker/kcptu
 
 | 软件 | 版本 |
 | :--- | :--- |
-| shadowsocks-libev |3.1.3 |
+| shadowsocks-libev |3.3.0 |
 | kcptun | 20180316 |
 
 # 使用
